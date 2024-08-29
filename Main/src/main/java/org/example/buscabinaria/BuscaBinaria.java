@@ -43,18 +43,21 @@ public class BuscaBinaria {
 
         public String[] getOrderNamesAndNumbers(String[] orderNames, String[] orderNumbers) throws Exception {
                 String[] vetorDeVetores = new String[orderNames.length];
-                if(orderNames.length != orderNumbers.length){
-                        throw new Exception("Os vetores digitados não tem o mesmo tamanho");
-                }
+                compareTowLists(orderNames, orderNumbers);
                 for(int i = 0; i < orderNames.length; i++){
-                        vetorDeVetores[i] = orderNumbers[i] + " : " + orderNames[i];
+                        vetorDeVetores[i] = orderNames[i] + " : " + orderNumbers[i];
                 }
                 Arrays.sort(vetorDeVetores);
                 return vetorDeVetores;
 
         }
+        public static void compareTowLists(String[] orderNames, String[] orderNumbers) throws Exception {
+                if(orderNames.length != orderNumbers.length){
+                        throw new Exception("Os vetores digitados não tem o mesmo tamanho");
+                }
+        }
 
-        public String getBuscaBinaria(String phone) throws Exception {
+        public String getBuscaBinaria(String nameRequest) throws Exception {
                 String[] orderNamesAndNumbers = getOrderNamesAndNumbers(names, phones);
                 int low = 0;
                 int max = orderNamesAndNumbers.length - 1;
@@ -63,13 +66,12 @@ public class BuscaBinaria {
 
                         int mid = (low + max) / 2;
                         String midString = orderNamesAndNumbers[mid];
-                        String midPhone = midString.split(" : ")[0];
-
-                        int compare = midPhone.compareTo(phone);
+                        String midName = midString.split( " : " )[0];
+                        int compare = midName.compareTo(nameRequest);
 
                         if(compare == 0){
-                                String midName = midString.split(" : ")[1];
-                                return "Nome: " + midName + ", Número de telefone: " + phone + ", Posição: " + (mid + 1);
+                                String midPhone = midString.split(" : ")[1];
+                                return "Nome: " + midName + ", Número de telefone: " + midPhone + ", Posição: " + (mid + 1);
                         }else if(compare < 0){
                                 low = mid + 1;
                         }else{

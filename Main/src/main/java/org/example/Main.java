@@ -11,9 +11,9 @@ public class Main {
         BuscaBinaria buscaBinaria = new BuscaBinaria();
 
         System.out.println("Entre com o nome que deseja pesquisar e com o numero");
-        String numero = ler.nextLine();
+        String nome = ler.nextLine();
 
-        System.out.println("O nome é " + buscaBinaria.getBuscaBinaria(numero));
+        System.out.println("O nome é " + buscaBinaria.getBuscaBinaria(nome));
     }
 
 
